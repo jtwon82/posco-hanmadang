@@ -12,7 +12,7 @@ public abstract class CommonController {
 	@Value("${dev.mode}")
 	public boolean dev_mode = false;
 	
-	@ExceptionHandler(Exception.class)
+//	@ExceptionHandler(Exception.class)
 //	@ResponseStatus (HttpStatus.INTERNAL_SERVER_ERROR)
 	protected String handlException(Exception e, Model model) {
 		

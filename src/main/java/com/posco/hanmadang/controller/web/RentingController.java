@@ -296,12 +296,16 @@ public class RentingController extends CommonController{
 		 
         try {
             // 200 * 50 에해당하는 이미지 사이즈를 지정하고, 자동가입방지 문자 길이를 설정한다.
-            Captcha captcha = new Captcha.Builder(250, 60)
+            Captcha captcha= new Captcha.Builder(250, 60)
                                     .addText()
                                     .addBackground()
                                     .addNoise()
                                     .addBorder()
                                     .build();
+            
+            // 세션에 자동가입방지 문자를 저장한다.
+            request.getSession().setAttribute("correctAnswer", captcha.getAnswer());
+            logger.info("captcha 자동가입방지 문자 : " + captcha.getAnswer());
  
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
@@ -311,9 +315,6 @@ public class RentingController extends CommonController{
             response.setContentType("image/jpeg");
             // Image를 write 한다
             Util.writeImage(response, captcha.getImage());
-            // 세션에 자동가입방지 문자를 저장한다.
-            request.getSession().setAttribute("correctAnswer", captcha.getAnswer());
-            logger.info("captcha 자동가입방지 문자 : " + captcha.getAnswer());
         } catch (Exception e) {
         	logger.error(e.getMessage());
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

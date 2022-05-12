@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>posco-git2</groupId>
+	<groupId>posco-hanmadang</groupId>
 	<artifactId>hanmadang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.5.8.RELEASE</version>
 	</parent>
 
 	<name>hanmadang</name>
@@ -21,6 +21,14 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+
+	<repositories>
+	    <repository>
+	       <id>my-local-repo</id>
+	       <url>file://${project.basedir}/libs</url>
+	    </repository>
+	</repositories>
+
 
 	<dependencies>
 		<dependency>
@@ -62,11 +70,16 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-core</artifactId>
 		</dependency>
+		
+		
+		
+		
+		
+		
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		
 		<dependency>
 		    <groupId>xerces</groupId>
 		    <artifactId>xercesImpl</artifactId>
@@ -109,19 +122,16 @@
 		    <groupId>org.mockito</groupId>
 		    <artifactId>mockito-all</artifactId>
 		    <version>1.9.5</version>
-		    <scope>test</scope>
 		</dependency>
-
 		<dependency>
 		    <groupId>log4j</groupId>
 		    <artifactId>log4j</artifactId>
 		    <version>1.2.17</version>
 		</dependency>
-
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>mssql-jdbc</artifactId>
-		    <version>7.4.1.jre8</version>
+		    <version>9.4.1.jre8</version>
 		</dependency>
 		<dependency>
 		    <groupId>com.ibm.icu</groupId>
@@ -130,76 +140,40 @@
 		</dependency>
 
 
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>custom</groupId> -->
-<!-- 			<artifactId>mssql-jdbc</artifactId> -->
-<!-- 			<version>1.0</version> -->
-<!-- 			<scope>system</scope> -->
-<!-- 			<systemPath>${project.basedir}/libs/mssql-jdbc-10.2.0.jre8.jar</systemPath> -->
-<!-- 		</dependency> -->
-		<dependency>
-			<groupId>custom</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/sqljdbc4-4.0.jar</systemPath>
-		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
 			<artifactId>html-exporter</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/html-exporter-0.3.4.jar</systemPath>
+			<version>0.3.4</version>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
 			<artifactId>cssparser</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/cssparser-1.0.1.jar</systemPath>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
 			<artifactId>jj-imaging</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/jj-imaging.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
 			<artifactId>jj-simplecaptcha</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/jj-simplecaptcha.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
 			<artifactId>INIPay50</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/INIPay50.jar</systemPath>
+		</dependency>
+		<dependency>
+		    <groupId>commons-httpclient</groupId>
+		    <artifactId>commons-httpclient</artifactId>
+		    <version>3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/commons-httpclient-3.0.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>custom</groupId>
-			<artifactId>ExecureCrypto</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/ExecureCrypto_v1.0_jdk14.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>custom</groupId>
-			<artifactId>icu4j</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/icu4j-4_8_2.jar</systemPath>
+			<artifactId>execureCrypto</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 
@@ -221,13 +195,31 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>false</showWarnings>
 					<showDeprecation>false</showDeprecation>
 				</configuration>
 			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-dependency-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>copy-dependencies</id> -->
+<!-- 						<phase>install</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>copy-dependencies</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</outputDirectory> -->
+<!-- 							<overWriteIfNewer>true</overWriteIfNewer> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 </project>

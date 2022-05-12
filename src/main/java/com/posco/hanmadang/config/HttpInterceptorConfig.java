@@ -21,15 +21,14 @@ public class HttpInterceptorConfig extends WebMvcConfigurerAdapter
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor((HandlerInterceptor) sessionAdmLoginInterceptor())
-		.addPathPatterns("/mgr/**")
-		.excludePathPatterns("/mgr/login.do", "/mgr/login/check", "/mgr/login/disconnect", "/mgr/login/confirm/**");
-		
+		registry.addInterceptor((HandlerInterceptor) sessionAdmLoginInterceptor()).addPathPatterns("/mgr/**")
+				.excludePathPatterns("/mgr/login.do", "/mgr/login/check", "/mgr/login/disconnect",
+						"/mgr/login/confirm/**");
+
 		registry.addInterceptor((HandlerInterceptor) new SessionWebLoginInterceptor())
-		.addPathPatterns("/my/**", "/login/**")
-		.excludePathPatterns("/my/login", "/login/member/check", "/login/find/**", "/my/lecture/pay/return", "/login/dormant/**");
-		
-		registry.addInterceptor((HandlerInterceptor) new RootHandlerInterseceptor())
-		.addPathPatterns("/**");
+				.addPathPatterns("/my/**", "/login/**").excludePathPatterns("/my/login", "/login/member/check",
+						"/login/find/**", "/my/lecture/pay/return", "/login/dormant/**");
+
+		registry.addInterceptor((HandlerInterceptor) new RootHandlerInterseceptor()).addPathPatterns("/**");
 	}
 }
