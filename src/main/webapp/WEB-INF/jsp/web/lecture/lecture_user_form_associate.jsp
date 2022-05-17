@@ -184,7 +184,7 @@
 						<label for="member-family">회원과의 관계</label>
 						<div class="link-tabs">
 							<a href="#none" data-value="본인" class="by-7 is-selected select-family" id="member-family"><span>본인</span></a>
-<!-- 							<a href="#none" data-value="배우자" class="by-7 select-family"><span>배우자</span></a> -->
+							<a href="#none" data-value="배우자" class="by-7 select-family"><span>배우자</span></a>
 						</div>
 						<input type="hidden" id="mem_type" name="mem_type" value="본인"/>
 					</div>
