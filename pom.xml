@@ -138,6 +138,14 @@
 		    <artifactId>icu4j</artifactId>
 		    <version>70.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>commons-httpclient</groupId>
+		    <artifactId>commons-httpclient</artifactId>
+		    <version>3.1</version>
+		</dependency>
+
+
+
 
 
 		<dependency>
@@ -164,11 +172,6 @@
 			<groupId>custom</groupId>
 			<artifactId>INIPay50</artifactId>
 			<version>1.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>commons-httpclient</groupId>
-		    <artifactId>commons-httpclient</artifactId>
-		    <version>3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>custom</groupId>

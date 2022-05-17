@@ -104,116 +104,111 @@
 										<tr>	
 											<td><c:out value="${item.key }"/></td>
 											<c:choose>
-												<c:when test="${fn:contains(item.key, '18:00 ~') }">
-												<td colspan="12"><span class="select-basic select-break">크리닝 타임</span></td>
-												</c:when>
-												<c:when test="${fn:length(item.value) > 0 and item.value[0].allCourt == true }">
-												<td colspan="12"><span class="select-basic select-general"><c:out value="${item.value[0].re_title }"/><c:if test="${!empty item.value[0].re_kind }">(<c:out value="${item.value[0].re_kind }"/>)</c:if></span></td>
-												</c:when>
-												
-												<c:otherwise>
-													<c:choose>
-													<c:when test="${not empty item.value }">
-														<c:forEach var="i" begin="1" end="12" step="1">
-															<c:choose>
-																<c:when test="${i == 3}"><td></td></c:when>
-																<c:when test="${i == 4}"><td></td></c:when>
-																<c:when test="${i == 5}"><td></td></c:when>
-																<c:otherwise>
-																	<c:set var="usedcourt" value="" /> 
-																	<c:set var="exist_flag" value="0" /> 
-																	<c:set var="str_i" value="${i}코트" /> 
-																	<c:forEach items="${item.value }" var="item2" varStatus="status1">
-																		<c:if test="${!((i == 1 and fn:contains(item2.rt_court, '11')) or (i == 2 and fn:contains(item2.rt_court, '12')) ) }">
-																		<c:if test="${fn:contains(item2.rt_court, str_i) and !fn:contains(usedcourt, str_i)}">
-																			<c:choose>
-																			<c:when test="${item2.re_type == 'lecture' }">
-																			<td><span class="select-basic select-general"><c:out value="${fn:length(item2.re_title) > 5 ? fn:substring(item2.re_title, 0, 5) : item2.re_title }"/></span></td>
-																			</c:when>
-																			<c:when test="${item2.re_type == 'team' }">
-																			<td><span class="select-basic select-general"><c:out value="${fn:length(item2.cl_name) > 5 ? fn:substring(item2.cl_name, 0, 5) : item2.cl_name}"/></span></td>
-																			</c:when>
-																			<c:when test="${item2.re_type == 'employee' }">
-																			<td><span class="select-basic select-general"><c:out value="${item2.re_name }"/></span></td>
-																			</c:when>
-																			<c:otherwise>
-																			<td><span class="select-basic select-general"><c:out value="${fn:length(item2.re_title) > 5 ? fn:substring(item2.re_title, 0, 5) : item2.re_title }"/><c:if test="${!empty item.value[0].re_kind }">(<c:out value="${item2.re_kind }"/>)</c:if></span></td>
-																			</c:otherwise>
-																			</c:choose>
-																			<c:set var="exist_flag" value="1" /> 
-																			
-																			<c:set var="usedcourt" value="${usedcourt += str_i }" /> 
-																		</c:if>
-																		</c:if>
-																	</c:forEach>
-																	
-																	<c:if test="${exist_flag == 0}">
-																	<c:choose>
-																		<c:when test="${type == 1}">
-																			<c:choose>
-																				<c:when test="${ fn:replace(fn:substring(item.key, 0, 5), ':', '') > after2hourTime}"> 
-																				<td><button data-value="${item.key }|${str_i}#" class="select-basic select-regular">직원</button></td>
-																				</c:when>
-																				<c:otherwise>
-																				<td></td>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:when>
-																		<c:when test="${type == 2 and yoil == '일요일' and fn:substring(item.key, 0, 5) >= '13:00'}">
-																		<td></td>
-																		</c:when>
-																		<c:when test="${type == 2 and i > 6 }">
-																		<td><button data-value="${item.key }|${str_i}#" class="select-basic select-team">동호회</button></td>
-																		</c:when>
-																		<c:otherwise>
-																		<td></td>
-																		</c:otherwise>
-																	</c:choose>
-																	</c:if>
-																</c:otherwise>
-															</c:choose>
+											<c:when test="${fn:contains(item.key, '18:00 ~') }">
+											<td colspan="12"><span class="select-basic select-break">크리닝 타임</span></td>
+											</c:when>
+											<c:when test="${fn:length(item.value) > 0 and item.value[0].allCourt == true }">
+											<td colspan="12"><span class="select-basic select-general"><c:out value="${item.value[0].re_title }"/><c:if test="${!empty item.value[0].re_kind }">(<c:out value="${item.value[0].re_kind }"/>)</c:if></span></td>
+											</c:when>
+											<c:otherwise>
+												<c:choose>
+												<c:when test="${not empty item.value }">
+														<c:forEach var="i" begin="1" end="6" step="1">
+															<td></td>
 														</c:forEach>
-													</c:when>
-													<c:otherwise>
-														<c:choose>
-														<c:when test="${type == 2 and yoil == '수요일' and (fn:contains(item.key, '18:30 ~') or fn:contains(item.key, '20:30 ~'))}">
-														<td colspan="12"><span class="select-basic select-general">구기종목의 날</span></td>
-														</c:when>
-														<c:when test="${type == 2 and yoil == '일요일' and (fn:contains(item.key, '07:00 ~') or fn:contains(item.key, '09:00 ~'))}">
-														<td colspan="12"><span class="select-basic select-general">구기종목의 날</span></td>
-														</c:when>
-														<c:when test="${type == 2 and yoil == '일요일' and fn:substring(item.key, 0, 5) >= '13:00'}">
-														<td colspan="12"></td>
-														</c:when>
-														<c:otherwise>
-															<c:forEach var="i" begin="1" end="12" step="1">
-																<c:choose>
-																<c:when test="${i == 3}"><td></td></c:when>
-																<c:when test="${i == 4}"><td></td></c:when>
-																<c:when test="${i == 5}"><td></td></c:when>
-																<c:when test="${type == 1}">
+													<c:forEach var="i" begin="7" end="12" step="1">
+														<c:set var="usedcourt" value="" /> 
+														<c:set var="exist_flag" value="0" /> 
+														<c:set var="str_i" value="${i}코트" /> 
+															<c:forEach items="${item.value }" var="item2" varStatus="status1">
+																<c:if test="${!((i == 1 and fn:contains(item2.rt_court, '11')) or (i == 2 and fn:contains(item2.rt_court, '12')) ) }">
+																<c:if test="${fn:contains(item2.rt_court, str_i) and !fn:contains(usedcourt, str_i)}">
 																	<c:choose>
+																	<c:when test="${item2.re_type == 'lecture' }">
+																	<td><span class="select-basic select-general"><c:out value="${fn:length(item2.re_title) > 5 ? fn:substring(item2.re_title, 0, 5) : item2.re_title }"/></span></td>
+																	</c:when>
+																	<c:when test="${item2.re_type == 'team' }">
+																	<td><span class="select-basic select-general"><c:out value="${fn:length(item2.cl_name) > 5 ? fn:substring(item2.cl_name, 0, 5) : item2.cl_name}"/></span></td>
+																	</c:when>
+																	<c:when test="${item2.re_type == 'employee' }">
+																	<td><span class="select-basic select-general"><c:out value="${item2.re_name }"/></span></td>
+																	</c:when>
+																	<c:otherwise>
+																	<td><span class="select-basic select-general"><c:out value="${fn:length(item2.re_title) > 5 ? fn:substring(item2.re_title, 0, 5) : item2.re_title }"/><c:if test="${!empty item.value[0].re_kind }">(<c:out value="${item2.re_kind }"/>)</c:if></span></td>
+																	</c:otherwise>
+																	</c:choose>
+																	<c:set var="exist_flag" value="1" /> 
+																	
+																	<c:set var="usedcourt" value="${usedcourt += str_i }" /> 
+																</c:if>
+																</c:if>
+															</c:forEach>
+															
+															<c:if test="${exist_flag == 0}">
+															<c:choose>
+															<c:when test="${type == 1}">
+																<c:choose>
 																	<c:when test="${ fn:replace(fn:substring(item.key, 0, 5), ':', '') > after2hourTime}"> 
-																	<td><button data-value="${item.key }|${i}코트#" class="select-basic select-regular">직원</button></td>
+																	<td><button data-value="${item.key }|${str_i}#" class="select-basic select-regular">직원</button></td>
 																	</c:when>
 																	<c:otherwise>
 																	<td></td>
 																	</c:otherwise>
-																	</c:choose>
-																</c:when>
-																<c:when test="${type == 2 and i > 6 }">
-																<td><button data-value="${item.key }|${i}코트#" class="select-basic select-team">동호회</button></td>
+																</c:choose>
+															</c:when>
+															<c:when test="${type == 2 and yoil == '일요일' and fn:substring(item.key, 0, 5) >= '13:00'}">
+															<td></td>
+															</c:when>
+															<c:when test="${type == 2 and i > 6 }">
+															<td><button data-value="${item.key }|${str_i}#" class="select-basic select-team">동호회</button></td>
+															</c:when>
+															<c:otherwise>
+															<td></td>
+															</c:otherwise>
+															</c:choose>
+															</c:if>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<c:choose>
+													<c:when test="${type == 2 and yoil == '수요일' and (fn:contains(item.key, '18:30 ~') or fn:contains(item.key, '20:30 ~'))}">
+													<td colspan="12"><span class="select-basic select-general">구기종목의 날</span></td>
+													</c:when>
+													<c:when test="${type == 2 and yoil == '일요일' and (fn:contains(item.key, '07:00 ~') or fn:contains(item.key, '09:00 ~'))}">
+													<td colspan="12"><span class="select-basic select-general">구기종목의 날</span></td>
+													</c:when>
+													<c:when test="${type == 2 and yoil == '일요일' and fn:substring(item.key, 0, 5) >= '13:00'}">
+													<td colspan="12"></td>
+													</c:when>
+													<c:otherwise>
+														<c:forEach var="i" begin="1" end="6" step="1">
+															<td></td>
+														</c:forEach>
+														<c:forEach var="i" begin="7" end="12" step="1">
+															<c:choose>
+															<c:when test="${type == 1}">
+																<c:choose>
+																<c:when test="${ fn:replace(fn:substring(item.key, 0, 5), ':', '') > after2hourTime}"> 
+																<td><button data-value="${item.key }|${i}코트#" class="select-basic select-regular">직원</button></td>
 																</c:when>
 																<c:otherwise>
 																<td></td>
 																</c:otherwise>
 																</c:choose>
-															</c:forEach>
-														</c:otherwise>
-														</c:choose>	
+															</c:when>
+															<c:when test="${type == 2 and i > 6 }">
+															<td><button data-value="${item.key }|${i}코트#" class="select-basic select-team">동호회</button></td>
+															</c:when>
+															<c:otherwise>
+															<td></td>
+															</c:otherwise>
+															</c:choose>
+														</c:forEach>
 													</c:otherwise>
-													</c:choose>
+													</c:choose>	
 												</c:otherwise>
+												</c:choose>
+											</c:otherwise>
 											</c:choose>
 										</tr>
 									</c:forEach>

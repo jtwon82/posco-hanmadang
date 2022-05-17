@@ -287,7 +287,17 @@ public class RentingController extends CommonController{
 			if(rentReserveType == Constant.RentReserveType.draw.ordinal())
 				return "web/reserve/reserve_time_draw";
 			
-			return "web/reserve/reserve_time_badminton";
+			Calendar cal2= Calendar.getInstance();
+			
+			String tmpH= String.format("%s%s", today, cal2.getTime().getHours());
+			
+			logger.info("date {}, today {}", date, tmpH );
+			
+			if( Integer.parseInt(tmpH) > 2022053113 ) { // 2022053113 보다크면 1,2 번코트 선택가능 
+				return "web/reserve/reserve_time_badminton";
+			} else {
+				return "web/reserve/reserve_time_badminton_05";
+			}
 		}
 	}
 	

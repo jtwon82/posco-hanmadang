@@ -93,8 +93,8 @@
 								<strong style="color:#00578a;">③ 포스코 / 그룹사 / 협력사</strong><br><br>
 								<span>포스코 / 그룹사 / 협력사<br> OB 입니다.</span>
 							</div>
-<!-- 							<a href="input?em_type=02&em_type2=01" class="btn btn-select btn-level3">선택</a> -->
-							<a href="javascript:;" onclick="alert('`단계적 개관 운영`으로 이번달은 신청 대상이 아니오니 양해 부탁드립니다.')" class="btn btn-select btn-level3">선택</a>
+							<a href="input?em_type=02&em_type2=01" class="btn btn-select btn-level3">선택</a>
+<!-- 							<a href="javascript:;" onclick="alert('`단계적 개관 운영`으로 이번달은 신청 대상이 아니오니 양해 부탁드립니다.')" class="btn btn-select btn-level3">선택</a> -->
 						</div>
 					</c:otherwise>
 					</c:choose>

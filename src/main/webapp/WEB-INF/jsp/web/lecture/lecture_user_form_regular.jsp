@@ -91,12 +91,12 @@
 						<label for="member-family">직원과의 관계</label>
 						<div class="link-tabs">
 							<a href="#none" data-value="본인" class="by-7 select-family is-selected"><span>본인</span></a>
-<!-- 							<a href="#none" data-value="배우자" class="by-7 select-family"><span>배우자</span></a> -->
-<!-- 							<a href="#none" data-value="부" class="by-7 select-family"><span>부</span></a> -->
-<!-- 							<a href="#none" data-value="모" class="by-7 select-family"><span>모</span></a> -->
-<!-- 							<a href="#none" data-value="자녀1" class="by-7 select-family"><span>자녀1</span></a> -->
-<!-- 							<a href="#none" data-value="자녀2" class="by-7 select-family"><span>자녀2</span></a> -->
-<!-- 							<a href="#none" data-value="자녀3" class="by-7 select-family"><span>자녀3</span></a> -->
+							<a href="#none" data-value="배우자" class="by-7 select-family"><span>배우자</span></a>
+							<a href="#none" data-value="부" class="by-7 select-family"><span>부</span></a>
+							<a href="#none" data-value="모" class="by-7 select-family"><span>모</span></a>
+							<a href="#none" data-value="자녀1" class="by-7 select-family"><span>자녀1</span></a>
+							<a href="#none" data-value="자녀2" class="by-7 select-family"><span>자녀2</span></a>
+							<a href="#none" data-value="자녀3" class="by-7 select-family"><span>자녀3</span></a>
 						</div>
 						<input type="hidden" id="mem_type" name="mem_type" value="본인"/>
 					</div>
