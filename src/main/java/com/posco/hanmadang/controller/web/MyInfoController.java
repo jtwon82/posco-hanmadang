@@ -309,7 +309,7 @@ public class MyInfoController extends CommonController{
 			model.addAttribute("pay_active", 0);
 		}
 		// 임시로 풀어놓기 - 5/3~5/8, 
-		model.addAttribute("pay_active", 1);
+		//model.addAttribute("pay_active", 1);
 		
 		if( ",00000001,18000483".indexOf(String.format(",%s", member.getMember_id()))>-1 ) {
 			model.addAttribute("pay_active", 1);
